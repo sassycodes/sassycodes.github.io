@@ -8,6 +8,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Space+Grotesk:wght@300;500;700&display=swap" rel="stylesheet">
     
+    <link href="https://cdn.jsdelivr.net/npm/@n8n/chat/dist/style.css" rel="stylesheet" />
+
     <style>
         :root {
             --accent-primary: #38bdf8;
@@ -70,12 +72,7 @@
             position: fixed;
             width: 100%;
             z-index: 100;
-            
-            /* REMOVED: backdrop-filter: blur(...) which caused the "block" look */
-            /* ADDED: A smooth gradient fade from top to transparent */
             background: linear-gradient(to bottom, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0) 100%);
-            
-            /* REMOVED: Border-bottom to ensure seamless integration */
             border-bottom: none;
         }
 
@@ -85,7 +82,6 @@
             font-size: 1.5rem;
             letter-spacing: -0.05em;
             color: white;
-            /* Stronger shadow for readability against moving video */
             text-shadow: 0 2px 10px rgba(0,0,0,0.8);
         }
 
@@ -135,7 +131,6 @@
             cursor: pointer;
             font-size: 0.9rem;
             transition: all 0.3s ease;
-            /* Kept slight blur ONLY inside the button, not the bar */
             backdrop-filter: blur(4px); 
         }
         .btn-secondary:hover {
@@ -346,6 +341,11 @@
             }
         }
 
+        /* N8N Custom Override to match theme if needed (Optional) */
+        :root {
+            --n8n-chat-primary-color: var(--accent-primary);
+        }
+
     </style>
 </head>
 <body>
@@ -453,6 +453,28 @@
                 }
             }, 800);
         }
+    </script>
+
+    <script type="module">
+        import { createChat } from 'https://cdn.jsdelivr.net/npm/@n8n/chat/dist/chat.bundle.es.js';
+
+        createChat({
+            webhookUrl: 'https://superm01.app.n8n.cloud/webhook/4069c7a3-bcdc-42af-adb2-6a518527e247/chat',
+            initialMessages: [
+                'IRIS_OS Online.',
+                'Need help defining your scene context?'
+            ],
+            i18n: {
+                en: {
+                    title: 'IRIS_OS Assistant',
+                    subtitle: 'Context Aware System',
+                }
+            },
+            // Remove this style block if you want standard n8n position
+            style: {
+                zIndex: 99999
+            }
+        });
     </script>
 </body>
 </html>
