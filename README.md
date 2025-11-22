@@ -1,46 +1,77 @@
-# Flow for our AI genration model 
-Our Vision - 
-To create a AI powered Website which gives a AI genrated video with Sound you want.
-Our Execution step :- 
-We have used n8n as no code backend and this is how our work flow look like - 
-<img width="1706" height="269" alt="image" src="https://github.com/user-attachments/assets/70a65efe-6b13-4ada-916a-71e63ffd75b7" />
+# 🎥 AI Video Generator (n8n Powered)
 
-1. where First we take Input idea from user and then we use gemini api which genrates our system script :- 
+**A full-stack, AI-powered video generation pipeline orchestrating LLMs, Image-to-Video models, and Cloud Editing APIs to turn simple text prompts into complete, narrated videos.**
 
-// system prompt for Script genration:-  
-  Act as a world-class Direct Response Video Director. I need a video ad script for the following:
+[**View Frontend Demo**](https://sassycodes.github.io)
 
-  **Product/Service:** [Insert Name Here, e.g., IrisOS]
-  **Target Audience:** [Insert Audience, e.g., Content Creators, Agencies]
-  **Problem Solved:** [Insert Problem, e.g., Video production is too slow and expensive]
-  **Key Benefit:** [Insert Benefit, e.g., Text-to-video in seconds]
-  **Tone:** [Insert Tone, e.g., Cinematic, High-energy, Professional]
-  **Platform:** [Insert Platform, e.g., Instagram Reel (9:16), YouTube Pre-roll (16:9)]
-  **Duration:** [e.g., 15 seconds, 30 seconds]
+---
 
-  **Instructions:**
-  1. Use the **PAS Framework** (Problem, Agitation, Solution) or **AIDA** (Attention, Interest, Desire, Action).
-  2. The first 3 seconds must contain a "Visual Hook" to stop the scroll.
-  3. Format the output as a **Markdown Table** with these columns:
-   - **Time** (e.g., 0:00-0:03)
-   - **Visual Scene** (Detailed prompt for video generation)
-   - **Audio/Dialogue** (Voiceover or Text-on-Screen)
-  4. Include a specific Call to Action (CTA) at the end.
+## 🚀 Vision
 
+The goal of this project is to democratize video production. We aim to create a seamless web experience where users can generate professional-grade videos with synchronized audio simply by typing a linear text prompt. By abstracting complex AI interactions behind a simple UI, we solve the problem of slow and expensive video production for content creators and agencies.
 
-2. After that there is system prompt which genrates video into 3  and seprates voice over part :- 
+---
 
-//You are an expert video script generator. Based on the user's video topic, generate a JSON object with exactly 4 fields: 'voiceover_text' (approximately 60 words for a 30-second video), 'prompt_part_1' (detailed visual prompt for the first 10 seconds), 'prompt_part_2' (detailed visual prompt for the second 10 seconds, continuing from part 1 with the same character/setting), and 'prompt_part_3' (detailed visual prompt for the final 10 seconds, continuing from part 2 with the same character/setting). Ensure visual continuity across all three parts - the same character, setting, and visual style must be maintained throughout. Each prompt should be highly detailed with specific descriptions of subject, action, setting, lighting, camera movement, and visual style suitable for AI video generation.
+## ⚙️ System Architecture
 
+The core of this application is a sophisticated **No-Code Backend** built on **n8n**. The workflow handles the logic, asset generation, and media stitching.
 
+![n8n Workflow Visualization](517527286-70a65efe-6b13-4ada-916a-71e63ffd75b7.png)
 
-3. There we have inserted 3 veo 3 modeles which genrates 3 videos of our script seperately and that Js code helps to feed last part of video to next agent .
+### The Workflow Explained
 
-4. For voice or audio we have used gemini tts audio which provides us the audio
+Our n8n pipeline executes the following distinct stages:
 
-5. At the end we are using Shotstock Which stiches all the three videos with audio 
+1.  **Input & Scripting:**
+    * The workflow receives a raw user idea.
+    * **Gemini API** acts as a "World-Class Direct Response Video Director" to generate a structured script using the PAS (Problem, Agitation, Solution) or AIDA framework.
+2.  **Structural Parsing:**
+    * A secondary system prompt converts the script into a strict JSON object containing:
+        * `voiceover_text`: ~60 words for a 30-second spot.
+        * `prompt_part_1`, `prompt_part_2`, `prompt_part_3`: Detailed visual descriptions for 10-second segments.
+3.  **Parallel Asset Generation:**
+    * **Video (Visual Continuity):** We utilize **Veo 3 models** to generate video in three 10-second chunks. Crucially, we use custom JavaScript to **extract the last frame** of the previous video and feed it into the next generation step. This ensures character, setting, and lighting consistency across the entire 30-second clip.
+    * **Audio (TTS):** The JSON voiceover text is sent to **Gemini TTS**, converting the output from PCM to WAV format for editing compatibility.
+4.  **Final Assembly:**
+    * **Shotstack API** is utilized to stitch the three video segments and the audio track together.
+    * The workflow polls for render status and formats the final response for the frontend.
 
-6. We are planing to host the complete working website which generates complete video with simple liner prompt
+---
+
+## 🛠️ Tech Stack
+
+* **Orchestration:** [n8n](https://n8n.io/) (No-code backend)
+* **LLM & Scripting:** Google Gemini API
+* **Video Generation:** Veo 3 Models
+* **Audio/TTS:** Gemini TTS (Generative Language API)
+* **Video Editing/Stitching:** [Shotstack API](https://shotstack.io/)
+* **Frontend:** HTML5, CSS3, Vanilla JavaScript (Hosted on GitHub Pages)
+
+---
+
+## 🧠 Prompt Engineering
+
+The quality of our output relies on rigorous prompt engineering. Below are the core system prompts driving the agent:
+
+<details>
+<summary><strong>Click to view Script Generation Prompt</strong></summary>
+
+```text
+Act as a world-class Direct Response Video Director. I need a video ad script for the following:
+
+Product/Service: [Insert Name]
+Target Audience: [Insert Audience]
+Problem Solved: [Insert Problem]
+Key Benefit: [Insert Benefit]
+Tone: [Insert Tone]
+Platform: [Insert Platform]
+Duration: [e.g., 30 seconds]
+
+Instructions:
+1. Use the PAS Framework (Problem, Agitation, Solution) or AIDA.
+2. The first 3 seconds must contain a "Visual Hook".
+3. Format output as a Markdown Table with columns: Time, Visual Scene, Audio/Dialogue.
+4. Include a specific Call to Action (CTA).
 
    Our website is made we just need to setup with our backend to make it complete interactive...
 Open: https://sassycodes.github.io
