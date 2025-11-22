@@ -76,4 +76,26 @@ Instructions:
    Our website is made we just need to setup with our backend to make it complete interactive...
 Open: https://sassycodes.github.io
 ## About
+</details>
+
+<details> <summary><strong>Click to view JSON Structure Prompt</strong></summary>
+
+Plaintext
+
+You are an expert video script generator. Based on the user's video topic, generate a JSON object with exactly 4 fields: 
+
+1. 'voiceover_text' (approx 60 words for 30s video)
+2. 'prompt_part_1' (detailed visual prompt for first 10s)
+3. 'prompt_part_2' (detailed visual prompt for second 10s, continuing from part 1)
+4. 'prompt_part_3' (detailed visual prompt for final 10s, continuing from part 2)
+
+Ensure visual continuity across all three parts - the same character, setting, and visual style must be maintained throughout.
+</details>
+
+💻 Frontend
+The frontend is currently a lightweight, static implementation hosted via GitHub Pages.
+
+Structure: Single index.html file containing all markup, styles, and logic.
+
+Status: The UI is live. We are currently in the process of wiring the n8n webhook endpoints to the frontend form to enable real-time user interaction.
 This site is a single `index.html` file that contains HTML, CSS and JavaScript.
