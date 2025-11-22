@@ -58,6 +58,48 @@ Our system is powered by a complex **n8n workflow** that handles parallel proces
 * **Video Editing/Stitching:** Shotstack API.
 
 ---
+## 🧠 Prompt Engineering
+
+The quality of our output relies on rigorous prompt engineering. Below are the core system prompts driving the agent:
+
+<details>
+<summary><strong>Click to view Script Generation Prompt</strong></summary>
+
+```text
+Act as a world-class Direct Response Video Director. I need a video ad script for the following:
+
+Product/Service: [Insert Name Here]
+Target Audience: [Insert Audience]
+Problem Solved: [Insert Problem]
+Key Benefit: [Insert Benefit]
+Tone: [Insert Tone]
+Platform: [Insert Platform]
+Duration: [e.g., 30 seconds]
+
+Instructions:
+1. Use the PAS Framework (Problem, Agitation, Solution) or AIDA.
+2. The first 3 seconds must contain a "Visual Hook" to stop the scroll.
+3. Format the output as a Markdown Table with columns: Time, Visual Scene, Audio/Dialogue.
+4. Include a specific Call to Action (CTA).
+```
+</details>
+---
+<details> <summary><strong>Click to view JSON Structure Prompt</strong></summary>
+
+```text
+
+You are an expert video script generator. Based on the user's video topic, generate a JSON object with exactly 4 fields:
+
+1. 'voiceover_text' (approximately 60 words for a 30-second video)
+2. 'prompt_part_1' (detailed visual prompt for the first 10 seconds)
+3. 'prompt_part_2' (detailed visual prompt for the second 10 seconds, continuing from part 1 with the same character/setting)
+4. 'prompt_part_3' (detailed visual prompt for the final 10 seconds, continuing from part 2 with the same character/setting).
+
+Ensure visual continuity across all three parts - the same character, setting, and visual style must be maintained throughout.
+
+```
+---
+</details>
 
 ## 🧩 Key Features
 
