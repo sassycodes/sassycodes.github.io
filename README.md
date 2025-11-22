@@ -81,8 +81,8 @@ Our system is powered by a complex **n8n workflow** that handles parallel proces
 
 ## 🤝 Contributing
 
-This project is currently being developed for **[Insert Hackathon Name/Purpose if applicable]**. If you have ideas on how to improve the prompt engineering or the n8n flow, feel free to open an issue!
+This project is currently being developed for **Neuro_sys**. If you have ideas on how to improve the prompt engineering or the n8n flow, feel free to open an issue!
 
 ---
 
-*Built with ❤️ by [Your Name/Team Name]*
+*Built with ❤️ by Team Genesis*
