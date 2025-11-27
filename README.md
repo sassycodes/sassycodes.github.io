@@ -18,7 +18,8 @@ We are building an autonomous content creation engine. Our goal is to streamline
 
 Our system is powered by a complex **n8n workflow** that handles parallel processing for audio and video, ensuring efficiency and visual consistency.
 
-![n8n Workflow Architecture](./workflow_diagram.png)
+<img width="1557" height="391" alt="image" src="https://github.com/user-attachments/assets/1cbb8fe1-c9f7-4569-ac00-efaa3db2c98a" />
+
 
 ### The Workflow Steps:
 
@@ -127,4 +128,4 @@ This project is currently being developed for **Neuro_sys**. If you have ideas o
 
 ---
 
-*Built with ❤️ by Team Genesis*
+*Built with ❤️ by Tech Genesis*
